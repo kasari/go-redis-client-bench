@@ -1,0 +1,27 @@
+hash: 313eaaab09033b08abb1ca76275110215dc93626384deec5326669aeacc553d7
+updated: 2016-12-12T10:26:19.383018571+09:00
+imports:
+- name: github.com/garyburd/redigo
+  version: 0708def8b0cf3a05acdf44a7f28b864c2958921d
+  subpackages:
+  - internal
+  - redis
+- name: github.com/kayac/parallel-benchmark
+  version: 8767c01bdc444833d8f996e2a97a0604a458c1ff
+  subpackages:
+  - benchmark
+- name: github.com/mediocregopher/radix.v2
+  version: 94451b037e02236d550bdc2035d0a9851749369b
+  subpackages:
+  - redis
+- name: gopkg.in/bsm/ratelimit.v1
+  version: db14e161995a5177acef654cb0dd785e8ee8bc22
+- name: gopkg.in/redis.v5
+  version: 854c88a72c8bb9c09936145aef886b7697d6b995
+  subpackages:
+  - internal
+  - internal/consistenthash
+  - internal/hashtag
+  - internal/pool
+  - internal/proto
+testImports: []

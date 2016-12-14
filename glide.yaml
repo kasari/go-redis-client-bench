@@ -1,0 +1,6 @@
+package: github.com/asari-koto/redis-bench
+import:
+- package: github.com/garyburd/redigo/redis
+- package: github.com/mediocregopher/radix.v2/redis
+- package: "gopkg.in/redis.v5"
+- package: github.com/kayac/parallel-benchmark/benchmark
