@@ -1,0 +1,66 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/mediocregopher/radix.v2/redis"
+)
+
+type User struct {
+	ID   uint64 `json:"id"`
+	Name string `json:"name"`
+}
+
+func main() {
+	c, err := redis.Dial("tcp", "127.0.0.1:6379")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer c.Close()
+
+	c.Cmd("FLUSHALL")
+
+	kasari := User{1, "kasari"}
+	b, _ := json.Marshal(kasari)
+
+	c.Cmd("SET", kasari.ID, b)
+
+	userJSON, err := c.Cmd("GET", kasari.ID).Bytes()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	var u User
+	err = json.Unmarshal(userJSON, &u)
+
+	fmt.Printf("%+v\n", u)
+	// Output:
+	// {ID:1 Name:kasari}
+
+	// Multi Get
+	vongole := User{2, "vongole"}
+	b, _ = json.Marshal(vongole)
+
+	c.Cmd("SET", vongole.ID, b)
+
+	userJSONs, err := c.Cmd("MGET", kasari.ID, vongole.ID).ListBytes()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	var users []User
+	for _, userJSON := range userJSONs {
+		var u User
+		json.Unmarshal(userJSON, &u)
+		users = append(users, u)
+	}
+
+	fmt.Printf("%+v\n", users)
+	// Output:
+	// [{ID:1 Name:kasari} {ID:2 Name:vongole}]
+}
