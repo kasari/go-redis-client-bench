@@ -1,6 +1,8 @@
-hash: 313eaaab09033b08abb1ca76275110215dc93626384deec5326669aeacc553d7
-updated: 2016-12-12T10:26:19.383018571+09:00
+hash: b9594a145700e6ae76699b7e0c3de25902d1c3f9e66f64e806ef60c0acf77a57
+updated: 2016-12-20T14:35:42.974455821+09:00
 imports:
+- name: github.com/chasex/redis-go-cluster
+  version: 222d81891f1d3fa7cf8b5655020352c3e5b4ec0f
 - name: github.com/garyburd/redigo
   version: 0708def8b0cf3a05acdf44a7f28b864c2958921d
   subpackages:
@@ -13,6 +15,7 @@ imports:
 - name: github.com/mediocregopher/radix.v2
   version: 94451b037e02236d550bdc2035d0a9851749369b
   subpackages:
+  - pool
   - redis
 - name: gopkg.in/bsm/ratelimit.v1
   version: db14e161995a5177acef654cb0dd785e8ee8bc22
